@@ -18,7 +18,7 @@
 			<div class="col-8">       
 				<h1 class="m-3">Doctor Management</h1>        
 				
-				<form id="formDoctor" name="formDoctor" >  
+				<form id="formDoctor" name="formDoctor" method="post" action="doctors.jsp">  
 					Name:  
 					<input id="name" name="name" type="text" class="form-control form-control-sm">  
 					

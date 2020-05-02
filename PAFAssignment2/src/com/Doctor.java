@@ -114,6 +114,15 @@ public class Doctor {
 					output += "<td>" + spec + "</td>";
 					output += "<td>" + hosp + "</td>";
 					output += "<td>" + dept + "</td>";
+					
+					// buttons    
+					output += "<td><input name='btnUpdate' type='button'       "
+							+ "value='Update'           "
+							+ "class='btnUpdate btn btn-secondary'></td>      "
+							+ "<td><input name='btnRemove' type='button'       "
+							+ "value='Remove'           "
+							+ "class='btnRemove btn btn-danger' data-itemid='"      
+							+ docID + "'>" + "</td></tr>";  
 
 					
 				}
