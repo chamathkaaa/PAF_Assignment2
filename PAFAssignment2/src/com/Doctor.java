@@ -65,9 +65,11 @@ public class Doctor {
 				preparedStmt.execute();
 				con.close();
 
-				output = "Inserted successfully";
+				String newDoctor = readDoctors();    
+				output = "{\"status\":\"success\", \"data\": \"" + newDoctor + "\"}";
+				
 			} catch (Exception e) {
-				output = "Error while inserting the item.";
+				output = "{\"status\":\"error\", \"data\":\"Error while inserting doctor.\"}";
 				System.err.println(e.getMessage());
 			}
 
@@ -106,7 +108,8 @@ public class Doctor {
 					String dept = rs.getString("DepartmentName");
 
 					// Add into the html table
-					output += "<tr><td>" + docName + "</td>";
+					output += "<tr><td><input id='hidDoctorIDUpdate' name='hidDoctorIDUpdate' type='hidden' value='" +docID+ "'>" + docName + "</td>";
+					//output += "<tr><td>" + docName + "</td>";
 					output += "<td>" + nic + "</td>";
 					output += "<td>" + address + "</td>";
 					output += "<td>" + mobNo + "</td>";
@@ -116,14 +119,14 @@ public class Doctor {
 					output += "<td>" + dept + "</td>";
 					
 					// buttons    
-					output += "<td><input name='btnUpdate' type='button'       "
-							+ "value='Update'           "
-							+ "class='btnUpdate btn btn-secondary'></td>      "
-							+ "<td><input name='btnRemove' type='button'       "
-							+ "value='Remove'           "
-							+ "class='btnRemove btn btn-danger' data-itemid='"      
-							+ docID + "'>" + "</td></tr>";  
+					/*output += "<td><input name='btnUpdate' type='button\" value='Update\" class='btnUpdate btn btn-secondary'></td>"
+							+ "<td><form method=\"post\" action=\"doctors.jsp\">" 
+							+ "<input name='btnRemove' type='submit\" value='Remove\" class=\"btn btn-danger\">" 
+							+ "<input name=\"hidDoctorIDDelete\" type=\"hidden\" value=\"" + docID + "\">" + "</form></td></tr>"; */
 
+					// buttons     
+					output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'></td>"       
+							+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-itemid='" + docID + "'>" + "</td></tr>"; 
 					
 				}
 
@@ -229,9 +232,11 @@ public class Doctor {
 				preparedStmt.execute();
 				con.close();
 
-				output = "Updated successfully";
+				String newDoctor = readDoctors();    
+				output = "{\"status\":\"success\", \"data\": \"" + newDoctor + "\"}";
+				
 			} catch (Exception e) {
-				output = "Error while updating the item.";
+				output = "{\"status\":\"error\", \"data\":\"Error while updating doctor.\"}";
 				System.err.println(e.getMessage());
 			}
 
@@ -262,9 +267,11 @@ public class Doctor {
 				preparedStmt.execute();
 				con.close();
 
-				output = "Deleted successfully";
+				String newDoctor = readDoctors();    
+				output = "{\"status\":\"success\", \"data\": \"" + newDoctor + "\"}";
+				
 			} catch (Exception e) {
-				output = "Error while deleting the item.";
+				output = "{\"status\":\"error\", \"data\":\"Error while updating doctor.\"}";
 				System.err.println(e.getMessage());
 			}
 

@@ -1,6 +1,11 @@
 $(document).ready(function() {  
-	$("#alertSuccess").hide();  
+	
+	if ($("#alertSuccess").text().trim() == "")  {   
+		$("#alertSuccess").hide();  
+		
+	}  
 	$("#alertError").hide(); 
+	
 });
 
 //SAVE ============================================ 
@@ -23,16 +28,10 @@ $(document).on("click", "#btnSave", function(event) {
 	} 
 
 	// If valid-----------------------  
-	var student = getStudentCard($("#txtName").val().trim(),        
-			$('input[name="rdoGender"]:checked').val(),       
-			$("#ddlYear").val()); 
-
-	$("#colStudents").append(student);    
+	$("#formDoctor").submit(); 
 	
-	$("#alertSuccess").text("Saved successfully.");  
-	$("#alertSuccess").show();    
-	
-	$("#formStudent")[0].reset(); 
+	$("#alertSuccess").text("Inserted successfully.");  
+	$("#alertSuccess").show(); 
 	
 }); 
 
@@ -40,66 +39,88 @@ $(document).on("click", "#btnSave", function(event) {
 function validateItemForm() {  
 	
 	// NAME  
-	if ($("#txtName").val().trim() == "")  {   
-		return "Insert student name.";  
+	if ($("#name").val().trim() == "")  {   
+		return "Insert Name.";  
+		
 	} 
 	 
-	 // GENDER  
-	if ($('input[name="rdoGender"]:checked').length === 0)  {   
-		return "Select gender.";  
+	 // NIC  
+	if ($("#nic").val().trim() == "")  {   
+		return "Insert NIC.";  
+		
+	} 
+	
+	// ADDRESS  
+	if ($("#address").val().trim() == "")  {   
+		return "Insert Address.";  
+		
 	} 
 	 
-	 // YEAR  
-	if ($("#ddlYear").val() == "0")  {   
-		return "Select year.";  
+	 // MOBILE  
+	if ($("#mobile").val().trim() == "")  {   
+		return "Insert Mobile.";  
+		
+	} 
+	 
+	 // is numerical value  
+	var tmpMobile = $("#mobile").val().trim();  
+	if (!$.isNumeric(tmpMobile))  {   
+		return "Insert a numerical value for Mobile Number.";  
+		
+	} 
+	
+	// EMAIL  
+	if ($("#email").val().trim() == "")  {   
+		return "Insert Email.";  
+		
+	} 
+	
+	// SPECIALIZATION  
+	if ($("#spec").val().trim() == "")  {   
+		return "Insert Specialization.";  
+		
+	} 
+	
+	// HOSPITAL  
+	if ($("#hospital").val().trim() == "")  {   
+		return "Insert Hospital Name.";  
+		
+	} 
+	
+	// DEPARTMENT  
+	if ($("#dept").val().trim() == "")  {   
+		return "Insert Department Name.";  
+		
 	} 
 	 
 	 return true; 
-} 
-
-//CARD ============================================ 
-function getStudentCard(name, gender, year) {  
-	
-	var title = (gender == "Male") ? "Mr." : "Ms."; 
-
-	var yearNumber = ""; 
-
-	switch (year)  {  
-		case "1":   yearNumber = "1st";   
-				break;  
-				
-		case "2":   yearNumber = "2nd";   
-				break;  
-				
-		case "3":   yearNumber = "3rd";   
-				break;  
-				
-		case "4":   yearNumber = "4th";   
-				break;  
-	} 
-
-	var student = "";  
-	student += "<div class=\"student card bg-light m-2\"        " +
-			"style=\"max-width: 10rem; float: left;\">";  
-	
-	student += "<div class=\"card-body\">";  
-	student += title + " " + name + ",";  
-	student += "<br>";  
-	student += yearNumber + " year";  
-	student += "</div>";  
-	student += "<input type=\"button\" value=\"Remove\"         " +
-			"class=\"btn btn-danger remove\">";  
-	student += "</div>"; 
-
-	return student; 
-	
+	 
 }
 
+
 //REMOVE========================================== 
-$(document).on("click", ".remove", function(event) {  
+$(document).on("click", ".btnRemove", function(event) {  
 	
-	$(this).closest(".student").remove();    
+	$(this).closest("tr").remove();    
 	$("#alertSuccess").text("Removed successfully.");  
+	$("#alertSuccess").show(); 
+	
+});
+
+//UPDATE========================================== 
+$(document).on("click", ".btnUpdate", function(event) {     
+	
+	$("#hidDoctorIDSave").val($(this).closest("tr").find('#hidDoctorIDUpdate').val());     
+	$("#name").val($(this).closest("tr").find('td:eq(0)').text());    
+	$("#nic").val($(this).closest("tr").find('td:eq(1)').text());     
+	$("#address").val($(this).closest("tr").find('td:eq(2)').text());     
+	$("#mobile").val($(this).closest("tr").find('td:eq(3)').text()); 
+	$("#email").val($(this).closest("tr").find('td:eq(4)').text()); 
+	$("#spec").val($(this).closest("tr").find('td:eq(5)').text()); 
+	$("#hospital").val($(this).closest("tr").find('td:eq(6)').text()); 
+	$("#dept").val($(this).closest("tr").find('td:eq(7)').text()); 
+	
+	$("#alertSuccess").text("Updated successfully.");  
 	$("#alertSuccess").show(); 
 	
 });

@@ -1,6 +1,7 @@
 <%@page import="com.Doctor"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head> 
@@ -44,15 +45,15 @@
 					 
 					 <br> 
 					 Hospital Name:  
-					 <input id="hospital" name="hospital" type="text" class="form-control form-control-sm">  
-					 
+					 <input id="hospital" name="hospital" type="text" class="form-control form-control-sm">
+
 					 <br> 
 					 Department Name:  
 					 <input id="dept" name="dept" type="text" class="form-control form-control-sm">   
 					 
 					 <br>  
 					 <input id="btnSave" name="btnSave" type="button" value="Save" class="btn btn-primary">  
-					 <input type="hidden" id="hidItemIDSave" name="hidItemIDSave" value=""> 
+					 <input type="hidden" id="hidDoctorIDSave" name="hidDoctorIDSave" value=""> 
 					 
 				</form> 
 				
